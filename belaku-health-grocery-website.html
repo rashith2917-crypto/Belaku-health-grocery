@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087f5b">
+<title>Belaku Health & Grocery | Your daily essentials, delivered</title>
+<style>
+:root{--green:#087f5b;--green2:#12a879;--blue:#1769aa;--ink:#17332b;--muted:#66756f;--bg:#f5faf7;--line:#e4eee8;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+a{color:inherit;text-decoration:none}button,input,select{font:inherit}.top{background:#075b45;color:#eafff5;text-align:center;padding:8px 14px;font-size:12px;letter-spacing:.2px}
+header{background:#fff;position:sticky;top:0;z-index:5;border-bottom:1px solid var(--line)}.nav{max-width:1160px;margin:auto;padding:14px 20px;display:flex;align-items:center;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;min-width:225px}.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,var(--green),#38c78d);display:grid;place-items:center;color:#fff;font-size:24px;font-weight:800;box-shadow:0 5px 14px #087f5b30}.brand strong{display:block;font-size:17px;line-height:1.1}.brand small{color:var(--muted);font-size:11px}
+.search{flex:1;display:flex;background:#f3f8f5;border:1px solid var(--line);border-radius:13px;overflow:hidden}.search input{width:100%;border:0;background:transparent;padding:12px 14px;outline:0}.search button{border:0;background:transparent;padding:0 14px;color:var(--green);font-size:19px}
+.nav-actions{display:flex;align-items:center;gap:9px}.pill{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;cursor:pointer;color:var(--ink)}.cart-btn{background:var(--green);border-color:var(--green);color:white;font-weight:700}.hero{max-width:1160px;margin:24px auto 18px;padding:0 20px}.hero-inner{border-radius:26px;overflow:hidden;background:linear-gradient(112deg,#e3f7ec 0%,#eaf4ff 100%);padding:42px;display:grid;grid-template-columns:1.3fr .7fr;align-items:center;min-height:285px;position:relative}.eyebrow{color:var(--green);font-size:12px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase}.hero h1{font-size:clamp(30px,4vw,48px);line-height:1.07;margin:12px 0;color:#103d31;max-width:600px;letter-spacing:-1.5px}.hero p{color:#557168;max-width:520px;line-height:1.6;margin:0 0 22px}.primary{background:var(--green);color:white;border:0;border-radius:12px;padding:13px 18px;font-weight:750;cursor:pointer;display:inline-block}.hero-art{justify-self:center;width:210px;height:210px;border-radius:50%;background:linear-gradient(145deg,#c5efd8,#c9e5ff);display:grid;place-items:center;font-size:100px;box-shadow:inset 0 0 0 14px #ffffff55}
+.trust{max-width:1160px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.trust div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;gap:10px;align-items:center;font-size:13px;color:#496258}.trust b{display:block;color:var(--ink);font-size:13px}
+main{max-width:1160px;margin:30px auto;padding:0 20px}.section-head{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:16px}.section-head h2{margin:0;font-size:24px;letter-spacing:-.5px}.section-head p{margin:5px 0 0;color:var(--muted);font-size:13px}.categories{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:30px}.category{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 10px;text-align:center;cursor:pointer;transition:.2s}.category:hover,.category.active{border-color:#80c9a9;background:#effaf4;transform:translateY(-2px)}.cat-icon{font-size:28px;margin-bottom:8px}.category strong{font-size:13px}
+.toolbar{display:flex;justify-content:space-between;align-items:center;margin:12px 0 16px;gap:12px}.toolbar select{padding:10px;border:1px solid var(--line);border-radius:10px;background:white;color:var(--ink)}.products{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.product{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;display:flex;flex-direction:column;min-width:0}.product-art{height:125px;border-radius:12px;background:linear-gradient(135deg,#eff9f3,#edf5ff);display:grid;place-items:center;font-size:48px;margin-bottom:12px}.tag{font-size:10px;text-transform:uppercase;letter-spacing:.7px;color:var(--green);font-weight:800}.product h3{font-size:15px;margin:6px 0 4px}.product p{font-size:12px;color:var(--muted);margin:0 0 12px;min-height:30px;line-height:1.4}.price-row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;gap:8px}.price{font-weight:800}.add{border:0;background:#e6f6ed;color:#087f5b;border-radius:10px;padding:9px 12px;font-weight:800;cursor:pointer}.add:hover{background:#d3f0df}
+.note{margin:22px 0;background:#fff8e8;border:1px solid #f3e3b9;color:#755a22;border-radius:14px;padding:14px;font-size:12px;line-height:1.5}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:28px}.info-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}.info-card h3{margin:0 0 8px}.info-card p{color:var(--muted);font-size:13px;line-height:1.5}.info-card button{margin-top:5px}
+footer{margin-top:45px;background:#103e32;color:#d8eee4;padding:30px 20px}.foot{max-width:1160px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.foot small{color:#a9cbbd}
+.overlay{position:fixed;inset:0;background:#10271f70;z-index:10;display:none;justify-content:flex-end}.overlay.open{display:flex}.drawer{background:#fff;width:min(420px,100%);height:100%;padding:22px;overflow:auto;box-shadow:-10px 0 30px #0002}.drawer-head{display:flex;justify-content:space-between;align-items:center}.drawer h2{margin:0}.close{border:0;background:#f0f5f2;border-radius:9px;padding:8px 11px;cursor:pointer}.cart-list{margin:20px 0}.cart-line{display:flex;justify-content:space-between;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}.qty{display:flex;align-items:center;gap:8px}.qty button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 8px;cursor:pointer}.total{display:flex;justify-content:space-between;font-weight:800;font-size:18px;padding:16px 0}.checkout{width:100%;border:0;border-radius:12px;background:#16a36f;color:#fff;padding:14px;font-weight:800;cursor:pointer}.empty{color:var(--muted);text-align:center;padding:30px 0}
+@media(max-width:800px){.nav{flex-wrap:wrap;gap:10px}.brand{min-width:0;flex:1}.search{order:3;flex-basis:100%}.hero-inner{padding:28px;grid-template-columns:1fr}.hero-art{display:none}.categories{grid-template-columns:repeat(3,1fr)}.products{grid-template-columns:repeat(2,1fr)}.trust{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
+@media(max-width:420px){.hero h1{font-size:31px}.hero-inner{padding:24px}.categories{grid-template-columns:repeat(2,1fr)}.products{gap:10px}.product{padding:10px}.product-art{height:100px}.nav-actions .pill{padding:9px}.section-head h2{font-size:21px}}
+</style>
+</head>
+<body>
+<div class="top" id="topline">Serving homes across Karnataka • Daily essentials made easy</div>
+<header><div class="nav">
+ <a class="brand" href="#"><span class="logo">✚</span><span><strong>Belaku Health & Grocery</strong><small id="tagline">Your everyday care partner</small></span></a>
+ <div class="search"><input id="search" placeholder="Search medicines, groceries, supplements..." aria-label="Search products"><button aria-label="Search">⌕</button></div>
+ <div class="nav-actions"><button class="pill" id="lang">ಕನ್ನಡ</button><button class="pill cart-btn" id="openCart">Cart <span id="cartCount">0</span></button></div>
+</div></header>
+<section class="hero"><div class="hero-inner">
+ <div><div class="eyebrow" id="eyebrow">CARE • NUTRITION • DAILY NEEDS</div><h1 id="heroTitle">Good health starts with everyday essentials.</h1><p id="heroDesc">Shop health products, nutrition, groceries and daily needs in one convenient place. Simple ordering, friendly service.</p><a class="primary" href="#shop" id="shopBtn">Explore products →</a></div>
+ <div class="hero-art">🛍️</div>
+</div></section>
+<div class="trust">
+ <div>🚚 <span><b>Karnataka delivery</b>Local delivery coverage</span></div>
+ <div>🛡️ <span><b>Careful service</b>Order support when you need it</span></div>
+ <div>💳 <span><b>Flexible payment</b>UPI or cash on delivery (when enabled)</span></div>
+</div>
+<main id="shop">
+ <div class="section-head"><div><h2 id="catTitle">Shop by category</h2><p id="catDesc">Find what you need, quickly.</p></div></div>
+ <div class="categories" id="categories"></div>
+ <div class="section-head"><div><h2 id="productTitle">Popular products</h2><p id="productDesc">Sample catalogue — update products and prices before launch.</p></div></div>
+ <div class="toolbar"><span id="resultCount">Showing products</span><select id="sort"><option value="default">Recommended</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option></select></div>
+ <div class="products" id="products"></div>
+ <div class="note" id="medicalNote"><b>Important:</b> Medicines are supplied only against a valid prescription where legally required and subject to pharmacist verification. This demo catalogue is not a pharmacy licence or a live medicine-ordering service. Do not add prescription medicines until your licensed pharmacy workflow is ready.</div>
+ <div class="info-grid">
+  <div class="info-card"><h3 id="presTitle">📄 Prescription enquiry</h3><p id="presDesc">For prescription medicines, contact the pharmacy team for verification. Do not send sensitive medical documents to an unverified number.</p><button class="primary" onclick="prescriptionInfo()" id="presBtn">How it works</button></div>
+  <div class="info-card"><h3 id="deliveryTitle">📍 Delivery in Karnataka</h3><p id="deliveryDesc">Delivery areas, charges and timelines will be confirmed when your store is ready to accept orders.</p><button class="pill" onclick="contactStore()" id="contactBtn">Contact store</button></div>
+ </div>
+</main>
+<footer><div class="foot"><div><b>Belaku Health & Grocery</b><br><small id="footline">Health, nutrition and daily essentials.</small></div><div><small>Demo storefront • Replace sample catalogue, contact number, address and policies before publishing.</small></div></div></footer>
+<div class="overlay" id="overlay"><aside class="drawer"><div class="drawer-head"><h2 id="cartTitle">Your cart</h2><button class="close" id="closeCart">✕</button></div><div class="cart-list" id="cartList"></div><div class="total"><span id="totalLabel">Total</span><span id="total">₹0</span></div><button class="checkout" id="checkout">Place order on WhatsApp</button><p style="font-size:11px;color:#77877f;line-height:1.5">WhatsApp ordering is a demo until you add your store's verified business number. No payment is collected on this demo page.</p></aside></div>
+<script>
+const products = [
+ {id:1,name:"Daily Multivitamin",category:"Nutrition",price:299,icon:"💊",desc:"Sample nutrition product"},
+ {id:2,name:"Protein Nutrition Mix",category:"Nutrition",price:499,icon:"🥛",desc:"Sample nutrition product"},
+ {id:3,name:"ORS Hydration Sachets",category:"Health",price:25,icon:"💧",desc:"Sample general wellness item"},
+ {id:4,name:"First Aid Kit",category:"Health",price:199,icon:"🩹",desc:"Basic home first-aid supplies"},
+ {id:5,name:"Organic Rice – 1 kg",category:"Grocery",price:89,icon:"🌾",desc:"Sample grocery item"},
+ {id:6,name:"Toor Dal – 1 kg",category:"Grocery",price:145,icon:"🫘",desc:"Sample grocery item"},
+ {id:7,name:"Fresh Hand Wash",category:"Personal Care",price:99,icon:"🧴",desc:"Everyday personal care"},
+ {id:8,name:"Baby Care Essentials",category:"Personal Care",price:249,icon:"🧸",desc:"Sample baby-care item"},
+ {id:9,name:"Calcium Supplement",category:"Supplements",price:220,icon:"🦴",desc:"Sample supplement listing"},
+ {id:10,name:"Vitamin C Supplement",category:"Supplements",price:180,icon:"🍊",desc:"Sample supplement listing"}
+];
+const cats=[["All","✨"],["Health","🩺"],["Nutrition","🥗"],["Grocery","🛒"],["Supplements","💚"],["Personal Care","🧴"]];
+let active="All",cart={},kannada=false;
+const $=id=>document.getElementById(id);
+function renderCats(){ $("categories").innerHTML=cats.map(([c,i])=>`<button class="category ${active===c?'active':''}" onclick="setCategory('${c}')"><div class="cat-icon">${i}</div><strong>${c}</strong></button>`).join("");}
+function renderProducts(){
+ let q=$("search").value.toLowerCase();
+ let list=products.filter(p=>(active==="All"||p.category===active)&&(p.name.toLowerCase().includes(q)||p.category.toLowerCase().includes(q)));
+ if($("sort").value==="low")list.sort((a,b)=>a.price-b.price);
+ if($("sort").value==="high")list.sort((a,b)=>b.price-a.price);
+ $("resultCount").textContent=`${list.length} products`;
+ $("products").innerHTML=list.length?list.map(p=>`<article class="product"><div class="product-art">${p.icon}</div><span class="tag">${p.category}</span><h3>${p.name}</h3><p>${p.desc}</p><div class="price-row"><span class="price">₹${p.price}</span><button class="add" onclick="addToCart(${p.id})">+ Add</button></div></article>`).join(""):`<p>No matching products. Try another search.</p>`;
+}
+function setCategory(c){active=c;renderCats();renderProducts();}
+function addToCart(id){cart[id]=(cart[id]||0)+1;renderCart();}
+function changeQty(id,n){cart[id]=(cart[id]||0)+n;if(cart[id]<=0)delete cart[id];renderCart();}
+function renderCart(){
+ let ids=Object.keys(cart),count=ids.reduce((s,id)=>s+cart[id],0),total=ids.reduce((s,id)=>s+cart[id]*products.find(p=>p.id==id).price,0);
+ $("cartCount").textContent=count;$("total").textContent="₹"+total;
+ $("cartList").innerHTML=ids.length?ids.map(id=>{let p=products.find(x=>x.id==id);return `<div class="cart-line"><div><b>${p.name}</b><br>₹${p.price} × ${cart[id]}</div><div class="qty"><button onclick="changeQty(${id},-1)">−</button>${cart[id]}<button onclick="changeQty(${id},1)">+</button></div></div>`}).join(""):`<div class="empty">Your cart is empty 🛒</div>`;
+}
+function contactStore(){alert("Add your verified Belaku business WhatsApp number and store contact details here before launch.");}
+function prescriptionInfo(){alert("Prescription orders require a valid prescription and pharmacist verification. Add a secure, compliant prescription workflow before accepting uploads.");}
+$("search").addEventListener("input",renderProducts);$("sort").addEventListener("change",renderProducts);
+$("openCart").onclick=()=>$("overlay").classList.add("open");$("closeCart").onclick=()=>$("overlay").classList.remove("open");
+$("overlay").addEventListener("click",e=>{if(e.target===$("overlay"))$("overlay").classList.remove("open")});
+$("checkout").onclick=()=>{if(!Object.keys(cart).length){alert("Your cart is empty.");return;}alert("Demo only: add your verified WhatsApp business number to enable order submission. Cart total: "+$("total").textContent);};
+$("lang").onclick=()=>{kannada=!kannada;$("lang").textContent=kannada?"English":"ಕನ್ನಡ";if(kannada){$("tagline").textContent="ನಿಮ್ಮ ದೈನಂದಿನ ಆರೈಕೆಯ ಸಂಗಾತಿ";$("topline").textContent="ಕರ್ನಾಟಕದಾದ್ಯಂತ ಮನೆಬಾಗಿಲಿಗೆ • ನಿಮ್ಮ ದಿನನಿತ್ಯದ ಅಗತ್ಯಗಳು";$("heroTitle").textContent="ಉತ್ತಮ ಆರೋಗ್ಯಕ್ಕೆ ದಿನನಿತ್ಯದ ಅಗತ್ಯಗಳು."; $("heroDesc").textContent="ಆರೋಗ್ಯ ಉತ್ಪನ್ನಗಳು, ಪೌಷ್ಟಿಕಾಂಶ, ದಿನಸಿ ಮತ್ತು ದಿನನಿತ್ಯದ ವಸ್ತುಗಳನ್ನು ಒಂದೇ ಸ್ಥಳದಲ್ಲಿ ಖರೀದಿಸಿ."; $("shopBtn").textContent="ಉತ್ಪನ್ನಗಳನ್ನು ನೋಡಿ →";$("catTitle").textContent="ವಿಭಾಗದ ಪ್ರಕಾರ ಖರೀದಿಸಿ";$("catDesc").textContent="ನಿಮಗೆ ಬೇಕಾದುದನ್ನು ಸುಲಭವಾಗಿ ಹುಡುಕಿ.";$("productTitle").textContent="ಜನಪ್ರಿಯ ಉತ್ಪನ್ನಗಳು";$("productDesc").textContent="ಮಾದರಿ ಉತ್ಪನ್ನ ಪಟ್ಟಿ — ಆರಂಭಿಸುವ ಮೊದಲು ಬೆಲೆ ಮತ್ತು ವಿವರಗಳನ್ನು ನವೀಕರಿಸಿ.";$("presTitle").textContent="📄 ಪ್ರಿಸ್ಕ್ರಿಪ್ಷನ್ ವಿಚಾರಣೆ";$("presDesc").textContent="ಪ್ರಿಸ್ಕ್ರಿಪ್ಷನ್ ಔಷಧಿಗಳಿಗೆ ಪರಿಶೀಲನೆಗಾಗಿ ಫಾರ್ಮಸಿ ತಂಡವನ್ನು ಸಂಪರ್ಕಿಸಿ.";$("presBtn").textContent="ವಿವರಗಳು";$("deliveryTitle").textContent="📍 ಕರ್ನಾಟಕದಲ್ಲಿ ಡೆಲಿವರಿ";$("deliveryDesc").textContent="ಡೆಲಿವರಿ ಪ್ರದೇಶ, ಶುಲ್ಕ ಮತ್ತು ಸಮಯವನ್ನು ಆರ್ಡರ್ ಸ್ವೀಕರಿಸುವ ಮೊದಲು ದೃಢಪಡಿಸಲಾಗುತ್ತದೆ.";$("contactBtn").textContent="ಸಂಪರ್ಕಿಸಿ";$("cartTitle").textContent="ನಿಮ್ಮ ಕಾರ್ಟ್";$("totalLabel").textContent="ಒಟ್ಟು";$("footline").textContent="ಆರೋಗ್ಯ, ಪೌಷ್ಟಿಕಾಂಶ ಮತ್ತು ದಿನನಿತ್ಯದ ಅಗತ್ಯಗಳು.";}else{location.reload();}};
+renderCats();renderProducts();renderCart();
+</script>
+</body></html>

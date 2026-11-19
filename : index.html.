@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#087f5b">
+<meta name="description" content="Belaku Health & Grocery - medicines, groceries, nutrition and daily essentials in Karnataka.">
+<title>Belaku Health & Grocery</title>
+<style>
+:root{--green:#087f5b;--dark:#07523f;--blue:#1769aa;--ink:#18352c;--muted:#687a72;--bg:#f5f8f6}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(110deg,var(--green),var(--blue));color:#fff;padding:16px 5%}
+.top{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-size:24px;font-weight:800}.logo small{display:block;font-size:12px;font-weight:400;margin-top:3px}
+.actions{display:flex;gap:8px}.actions button{border:0;border-radius:9px;padding:10px 13px;background:#fff;color:var(--dark);font-weight:700}
+button,input,select,textarea{font:inherit}button{cursor:pointer}
+.hero{padding:42px 5%;background:linear-gradient(120deg,#e0f7eb,#e5f2ff)}
+.hero-inner,main,.footer-inner{max-width:1200px;margin:auto}.hero h1{font-size:clamp(29px,5vw,46px);margin:0 0 12px}.hero p{max-width:600px;line-height:1.6;color:#36594b}
+.search{max-width:620px;margin-top:20px}.search input{width:100%;padding:14px;border:1px solid #cbded5;border-radius:10px;background:#fff}
+main{padding:26px 5%}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+h2{font-size:22px}.categories{display:flex;gap:10px;overflow-x:auto;padding:8px 0 20px}
+.category{white-space:nowrap;min-width:105px;padding:13px 14px;border:1px solid #d8e8df;background:#fff;border-radius:12px}
+.category.active{background:var(--green);color:#fff;border-color:var(--green)}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:15px}
+.product{background:#fff;border:1px solid #e5eee9;border-radius:14px;padding:14px;display:flex;flex-direction:column;min-width:0}
+.product-image{height:112px;border-radius:10px;background:#eff8f3;display:grid;place-items:center;font-size:45px}
+.product h3{font-size:16px;margin:12px 0 5px}.product p{font-size:13px;color:var(--muted);line-height:1.45;margin:5px 0 12px}
+.price{font-weight:800;color:var(--green);margin-top:auto}.add{width:100%;margin-top:12px;padding:11px;border:0;border-radius:8px;background:var(--green);color:#fff;font-weight:700}.add:hover{background:var(--dark)}
+.cart-panel{background:#fff;border:1px solid #dceae2;padding:18px;border-radius:14px;margin-top:32px}
+.cart-item{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #edf1ee;padding:12px 0}
+.cart-item button{border:0;background:#ffe9e9;border-radius:6px;padding:8px}.total{text-align:right;font-size:20px;font-weight:800;margin:16px 0}
+.checkout{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
+.checkout input,.checkout select,.checkout textarea{width:100%;padding:12px;border:1px solid #cbded5;border-radius:8px;background:white}
+.checkout textarea,.checkout .wide{grid-column:1/-1}.primary{grid-column:1/-1;padding:14px;background:var(--blue);color:#fff;border:0;border-radius:8px;font-weight:700}
+.notice{background:#fff8df;padding:14px;border-radius:10px;font-size:13px;line-height:1.55;margin-top:20px}
+.empty{text-align:center;color:var(--muted);padding:18px}
+footer{margin-top:35px;padding:28px 5%;background:#073f34;color:#fff;line-height:1.7}
+@media(max-width:520px){.checkout{grid-template-columns:1fr}.checkout textarea,.checkout .wide,.primary{grid-column:1}.logo{font-size:21px}}
+</style>
+</head>
+<body>
+<header><div class="top">
+  <div class="logo">🌿 Belaku<small>Health &amp; Grocery</small></div>
+  <div class="actions">
+    <button type="button" onclick="toggleLanguage()" id="languageButton">ಕನ್ನಡ</button>
+    <button type="button" onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth'})">🛒 Cart <span id="cartCount">0</span></button>
+  </div>
+</div></header>
+<section class="hero"><div class="hero-inner">
+  <h1 id="heroTitle">Your Health, Our Priority.</h1>
+  <p id="heroDescription">Medicines, groceries, nutrition and daily essentials — all in one place.</p>
+  <div class="search"><input id="searchInput" type="search" placeholder="Search products..." aria-label="Search products" oninput="renderProducts()"></div>
+</div></section>
+<main>
+  <div class="section-head"><h2 id="categoryTitle">Shop by Category</h2></div>
+  <div class="categories" id="categories"></div>
+  <div class="section-head"><h2 id="productsTitle">Our Products</h2><span id="productCount"></span></div>
+  <div class="products" id="products"></div>
+  <section class="cart-panel" id="cart">
+    <h2 id="cartTitle">🛒 Your Shopping Cart</h2>
+    <div id="cartItems"></div>
+    <div class="total">Total: ₹<span id="total">0</span></div>
+    <h3 id="checkoutTitle">Delivery Details</h3>
+    <div class="checkout">
+      <input id="customerName" placeholder="Full name" aria-label="Full name">
+      <input id="phone" type="tel" inputmode="numeric" placeholder="10-digit mobile number" aria-label="Mobile number">
+      <input id="address" class="wide" placeholder="Full delivery address" aria-label="Delivery address">
+      <input id="pincode" inputmode="numeric" placeholder="6-digit PIN code" aria-label="PIN code">
+      <select id="payment" aria-label="Payment preference"><option>Cash on Delivery</option><option>UPI (confirm separately)</option></select>
+      <textarea id="notes" placeholder="Order notes or prescription enquiry (if applicable)" aria-label="Order notes"></textarea>
+      <button class="primary" type="button" onclick="placeOrder()" id="orderButton">Send Order Enquiry on WhatsApp</button>
+    </div>
+    <div class="notice"><strong>Important:</strong> This is a demo storefront. It does not process payments, verify prescriptions, check stock or confirm orders. Prescription-only medicines must only be supplied after valid prescription review by an appropriately licensed pharmacy. Replace sample products and prices with verified catalogue information before launch.</div>
+  </section>
+</main>
+<footer><div class="footer-inner">
+  <h2>🌿 Belaku Health &amp; Grocery</h2>
+  <p>Healthy choices. Everyday essentials.</p>
+  <p>Karnataka, India</p>
+  <p>Customer support: Add your business phone number</p>
+  <small>© 2026 Belaku Health &amp; Grocery. All rights reserved.</small>
+</div></footer>
+<script>
+const productsData=[
+{id:1,name:"Daily Multivitamin",category:"Nutrition",price:199,icon:"💊",description:"Sample nutrition product"},
+{id:2,name:"Protein Powder",category:"Nutrition",price:599,icon:"🥤",description:"Sample nutrition product"},
+{id:3,name:"Health Supplement",category:"Supplements",price:299,icon:"🧴",description:"Sample supplement"},
+{id:4,name:"Vitamin C",category:"Supplements",price:149,icon:"🍊",description:"Sample supplement"},
+{id:5,name:"Rice 5 kg",category:"Grocery",price:320,icon:"🍚",description:"Sample grocery item"},
+{id:6,name:"Cooking Oil 1 L",category:"Grocery",price:145,icon:"🫒",description:"Sample grocery item"},
+{id:7,name:"Wheat Flour 5 kg",category:"Grocery",price:260,icon:"🌾",description:"Sample grocery item"},
+{id:8,name:"Sugar 1 kg",category:"Grocery",price:48,icon:"🛍️",description:"Sample grocery item"},
+{id:9,name:"First Aid Kit",category:"First Aid",price:249,icon:"🩹",description:"Sample first-aid kit"},
+{id:10,name:"Digital Thermometer",category:"First Aid",price:120,icon:"🌡️",description:"Sample health accessory"},
+{id:11,name:"Prescription Medicine Enquiry",category:"Medicines",price:0,icon:"💊",description:"Contact pharmacy for prescription review and availability"},
+{id:12,name:"Personal Care Kit",category:"Personal Care",price:199,icon:"🧼",description:"Sample personal-care item"}
+];
+const categories=["All","Medicines","Grocery","Nutrition","Supplements","First Aid","Personal Care"];
+let cart=[],selectedCategory="All",kannada=false;
+function toggleLanguage(){
+  kannada=!kannada;
+  document.getElementById("languageButton").textContent=kannada?"English":"ಕನ್ನಡ";
+  document.getElementById("heroTitle").textContent=kannada?"ನಿಮ್ಮ ಆರೋಗ್ಯವೇ ನಮ್ಮ ಆದ್ಯತೆ.":"Your Health, Our Priority.";
+  document.getElementById("heroDescription").textContent=kannada?"ಔಷಧಿಗಳು, ದಿನಸಿ, ಪೌಷ್ಟಿಕಾಂಶ ಮತ್ತು ದಿನನಿತ್ಯದ ಅಗತ್ಯ ವಸ್ತುಗಳು ಒಂದೇ ಸ್ಥಳದಲ್ಲಿ.":"Medicines, groceries, nutrition and daily essentials — all in one place.";
+  document.getElementById("categoryTitle").textContent=kannada?"ವಿಭಾಗದ ಪ್ರಕಾರ ಖರೀದಿಸಿ":"Shop by Category";
+  document.getElementById("productsTitle").textContent=kannada?"ನಮ್ಮ ಉತ್ಪನ್ನಗಳು":"Our Products";
+  document.getElementById("cartTitle").textContent=kannada?"🛒 ನಿಮ್ಮ ಖರೀದಿ ಪಟ್ಟಿ":"🛒 Your Shopping Cart";
+  document.getElementById("checkoutTitle").textContent=kannada?"ವಿತರಣೆಯ ವಿವರಗಳು":"Delivery Details";
+  document.getElementById("orderButton").textContent=kannada?"WhatsApp ಮೂಲಕ ಆರ್ಡರ್ ವಿಚಾರಣೆ ಕಳುಹಿಸಿ":"Send Order Enquiry on WhatsApp";
+  renderCategories();renderProducts();
+}
+function renderCategories(){
+  const el=document.getElementById("categories");el.replaceChildren();
+  categories.forEach(category=>{
+    const b=document.createElement("button");b.type="button";
+    b.className="category"+(selectedCategory===category?" active":"");
+    b.textContent=category;b.onclick=()=>{selectedCategory=category;renderCategories();renderProducts();};
+    el.appendChild(b);
+  });
+}
+function renderProducts(){
+  const q=document.getElementById("searchInput").value.toLowerCase();
+  const filtered=productsData.filter(p=>(selectedCategory==="All"||p.category===selectedCategory)&&(p.name.toLowerCase().includes(q)||p.category.toLowerCase().includes(q)));
+  const el=document.getElementById("products");el.replaceChildren();
+  document.getElementById("productCount").textContent=filtered.length+" products";
+  if(!filtered.length){el.innerHTML='<p class="empty">No products found.</p>';return;}
+  filtered.forEach(p=>{
+    const card=document.createElement("article");card.className="product";
+    const img=document.createElement("div");img.className="product-image";img.textContent=p.icon;
+    const title=document.createElement("h3");title.textContent=p.name;
+    const desc=document.createElement("p");desc.textContent=p.description;
+    const price=document.createElement("div");price.className="price";price.textContent=p.price?"₹"+p.price:"Price after pharmacy review";
+    const btn=document.createElement("button");btn.type="button";btn.className="add";btn.textContent=p.price?"Add to Cart":"Enquire";
+    btn.onclick=()=>addToCart(p.id);
+    card.append(img,title,desc,price,btn);el.appendChild(card);
+  });
+}
+function addToCart(id){
+  const p=productsData.find(x=>x.id===id);
+  if(!p.price){alert("Please contact the pharmacy for prescription review and availability.");return;}
+  const found=cart.find(x=>x.id===id);if(found)found.quantity++;else cart.push({...p,quantity:1});
+  renderCart();
+}
+function removeFromCart(id){cart=cart.filter(x=>x.id!==id);renderCart();}
+function renderCart(){
+  const el=document.getElementById("cartItems");el.replaceChildren();let total=0,count=0;
+  if(!cart.length){el.innerHTML='<p class="empty">Your cart is empty.</p>';}
+  cart.forEach(item=>{
+    total+=item.price*item.quantity;count+=item.quantity;
+    const row=document.createElement("div");row.className="cart-item";
+    const name=document.createElement("span");name.textContent=item.name+" × "+item.quantity;
+    const amount=document.createElement("strong");amount.textContent="₹"+(item.price*item.quantity);
+    const remove=document.createElement("button");remove.type="button";remove.textContent="Remove";remove.setAttribute("aria-label","Remove "+item.name);remove.onclick=()=>removeFromCart(item.id);
+    row.append(name,amount,remove);el.appendChild(row);
+  });
+  document.getElementById("total").textContent=total;
+  document.getElementById("cartCount").textContent=count;
+}
+function placeOrder(){
+  if(!cart.length){alert("Please add products to your cart.");return;}
+  const name=document.getElementById("customerName").value.trim();
+  const phone=document.getElementById("phone").value.trim();
+  const address=document.getElementById("address").value.trim();
+  const pin=document.getElementById("pincode").value.trim();
+  if(!name||!phone||!address||!pin){alert("Please complete all delivery details.");return;}
+  if(!/^[6-9]\\d{9}$/.test(phone)){alert("Enter a valid 10-digit Indian mobile number.");return;}
+  if(!/^\\d{6}$/.test(pin)){alert("Enter a valid 6-digit PIN code.");return;}
+  const lines=cart.map(x=>x.name+" x "+x.quantity+" = Rs."+x.price*x.quantity).join("\\n");
+  const total=cart.reduce((sum,x)=>sum+x.price*x.quantity,0);
+  const msg="Belaku Health & Grocery - Order Enquiry\\n\\nCustomer: "+name+"\\nPhone: "+phone+"\\nAddress: "+address+"\\nPIN: "+pin+"\\n\\nItems:\\n"+lines+"\\n\\nTotal: Rs."+total+"\\nPayment preference: "+document.getElementById("payment").value+"\\nNotes: "+document.getElementById("notes").value+"\\n\\nPlease confirm stock, delivery and order acceptance.";
+  // Replace with your WhatsApp Business number: country code 91 + 10-digit number.
+  const businessWhatsAppNumber="91XXXXXXXXXX";
+  if(!/^91[6-9]\\d{9}$/.test(businessWhatsAppNumber)){alert("Order details are ready, but WhatsApp ordering is not enabled yet. Replace 91XXXXXXXXXX in the code with your business WhatsApp number.");return;}
+  window.open("https://wa.me/"+businessWhatsAppNumber+"?text="+encodeURIComponent(msg),"_blank","noopener");
+}
+renderCategories();renderProducts();renderCart();
+</script>
+</body>
+</html>
